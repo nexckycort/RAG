@@ -1,11 +1,13 @@
 {
-  "name": "@workspace/embedding",
+  "name": "@workspace/model-server",
   "author": "nexckycort <nexckycort@gmail.com>",
   "license": "MIT",
   "description": "FastAPI-based API that generates semantic text embeddings using all-MiniLM-L6-v2",
   "keywords": ["NLP", "Embeddings", "Sentence Transformers", "Text Embedding"],
   "scripts": {
+    "activate:venv": "source embedding/bin/activate",
+    "create:venv": "python3 -m venv .venv",
     "dev": "fastapi dev main.py",
-    "create:venv": "python3 -m venv .venv && source embedding/bin/activate"
+    "pip:install": "pip install -r requirements.txt"
   }
 }
