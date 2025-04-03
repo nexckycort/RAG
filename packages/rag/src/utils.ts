@@ -24,7 +24,7 @@ export function splitTextIntoChunks(
   while (start < text.length) {
     const end = Math.min(start + chunkSize, text.length);
     chunks.push(text.slice(start, end));
-    start += chunkSize - overlap; // Avanza considerando el solapamiento
+    start += chunkSize - overlap;
   }
 
   return chunks;
@@ -70,6 +70,37 @@ export async function generateEmbeddings(
     return result;
   } catch (error) {
     console.error('Error al generar los embeddings:', error.message);
+    throw error;
+  }
+}
+
+export async function generateEmbedding(
+  text: string,
+): Promise<Embeddings['embedding']> {
+  try {
+    const response = await fetch(`${SERVER_URL}/embed`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ text }),
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        `Error HTTP: ${response.status} - ${response.statusText}`,
+      );
+    }
+
+    const data: { embedding: Embeddings['embedding'] } = await response.json();
+
+    if (!Array.isArray(data.embedding)) {
+      throw new Error('La respuesta no contiene un embedding válido');
+    }
+
+    return data.embedding;
+  } catch (error) {
+    console.error('Error al generar el embedding:', error.message);
     throw error;
   }
 }
