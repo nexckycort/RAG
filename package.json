@@ -1,0 +1,26 @@
+{
+  "name": "monorepo",
+  "version": "1.0.0",
+  "workspaces": ["packages/*"],
+  "author": "nexckycort <nexckycort@gmail.com>",
+  "license": "MIT",
+  "description": "Monorepo managing interconnected services for semantic search, embedding generation, and text processing using AI and vector databases",
+  "keywords": [
+    "Monorepo",
+    "Semantic Search",
+    "Embeddings",
+    "AI",
+    "Machine Learning",
+    "Vector Database",
+    "Pinecone",
+    "FastAPI",
+    "TypeScript",
+    "Markdown",
+    "RAG",
+    "Text Processing"
+  ],
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "typescript": "^5.8.2"
+  }
+}
